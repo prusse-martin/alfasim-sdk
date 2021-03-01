@@ -10,10 +10,13 @@ from ..common_testing.alfasim_sdk_common_testing.case_builders import (
     build_simple_segment,
 )
 from alfasim_sdk import MaterialDescription
+from alfasim_sdk import MultiInputDescription
+from alfasim_sdk import MultiInputType
 from alfasim_sdk import NodeCellType
 from alfasim_sdk import PvtModelTableParametersDescription
 from alfasim_sdk._internal import constants
 from alfasim_sdk._internal.alfacase import case_description
+from alfasim_sdk._internal.alfacase.case_description import CurveDescription
 from alfasim_sdk._internal.alfacase.case_description_attributes import attrib_enum
 from alfasim_sdk._internal.alfacase.case_description_attributes import (
     attrib_instance,
@@ -1223,3 +1226,20 @@ def test_case_description_duplicate_names_between_elements(default_well):
 
     with pytest.raises(InvalidReferenceError, match=re.escape(expected_msg)):
         case.ensure_unique_names()
+
+
+def test_multi_input_description():
+    multi_input_curve = MultiInputDescription(
+        mode=MultiInputType.Curve,
+        curve=CurveDescription(
+            image=Array("temperature", [25.0, 30.0, 40.0], "degC"),
+            domain=Array("time", [0.0, 100.0, 1000.0], "s"),
+        ),
+    )
+
+    multi_input_constant = MultiInputDescription.from_scalar(Scalar(25.0, "degC"))
+
+    assert (
+        multi_input_constant.constant.GetValue("K")
+        == multi_input_curve.curve.image.GetValues("K")[0]
+    )

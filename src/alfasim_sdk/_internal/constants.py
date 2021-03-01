@@ -358,3 +358,8 @@ class WellConnectionPort(Enum):
     Top = "port"  # 'port' is being used for backwards compatibility.
     LeftAnnulus = "left_annulus_port"
     RightAnnulus = "right_annulus_port"
+
+
+class MultiInputType(Enum):
+    Constant = "constant"
+    Curve = "curve"

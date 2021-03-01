@@ -34,6 +34,41 @@ from alfasim_sdk._internal import constants
 
 
 @attr.s(frozen=True, slots=True)
+class CurveDescription:
+    """
+    TODO TODO TODO: Review this
+    .. include:: /alfacase_definitions/OpeningCurveDescription.txt
+
+    .. include:: /alfacase_definitions/list_of_unit_for_time.txt
+    .. include:: /alfacase_definitions/list_of_unit_for_dimensionless.txt
+    """
+
+    image: Array = attr.ib(validator=instance_of(Array), default=Array("Unknown"))
+    domain: Array = attr.ib(validator=instance_of(Array), default=Array("Unknown"))
+
+    def __attrs_post_init__(self):
+        if len(self.image) != len(self.domain):
+            msg = (
+                f"Image and Domain must have the same size, got {len(self.image)} "
+                f"items for image and {len(self.domain)} for domain"
+            )
+            raise ValueError(msg)
+
+
+@attr.s(frozen=True, slots=True)
+class MultiInputDescription:
+    mode = attrib_enum(
+        type_=constants.MultiInputType, default=constants.MultiInputType.Constant
+    )
+    constant = attrib_scalar(default=Scalar("Unknown"), is_optional=True)
+    curve = attr.ib(default=None)  # TODO: attrib_curve() CurveDescription
+
+    @classmethod
+    def from_scalar(cls, scalar):
+        return cls(constant=scalar)
+
+
+@attr.s(frozen=True, slots=True)
 class PluginDescription:
     name: Optional[str] = attr.ib(default=None, validator=optional(instance_of(str)))
     gui_models = attr.ib(default=attr.Factory(list))
@@ -153,6 +188,8 @@ class _MassSourceCommon:
         default=attr.Factory(dict), validator=dict_of(Scalar)
     )
     total_mass_flow_rate = attrib_scalar(default=Scalar(1.0, "kg/s", "mass flow rate"))
+    # TODO
+    #     total_mass_flow_rate = attrib_multi_input(default=Scalar(1.0, "kg/s", "mass flow rate"))
     water_cut = attrib_scalar(default=Scalar("volume fraction", 0.0, "-"))
     gas_oil_ratio = attrib_scalar(
         default=Scalar("standard volume per standard volume", 0.0, "sm3/sm3")

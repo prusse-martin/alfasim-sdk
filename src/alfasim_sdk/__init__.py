@@ -44,6 +44,7 @@ from alfasim_sdk._internal.alfacase.case_description import (
 from alfasim_sdk._internal.alfacase.case_description import (
     CompressorPressureTableDescription,
 )
+from alfasim_sdk._internal.alfacase.case_description import CurveDescription
 from alfasim_sdk._internal.alfacase.case_description import CvTableDescription
 from alfasim_sdk._internal.alfacase.case_description import EnvironmentDescription
 from alfasim_sdk._internal.alfacase.case_description import (
@@ -95,6 +96,7 @@ from alfasim_sdk._internal.alfacase.case_description import (
     MassSourceNodePropertiesDescription,
 )
 from alfasim_sdk._internal.alfacase.case_description import MaterialDescription
+from alfasim_sdk._internal.alfacase.case_description import MultiInputDescription
 from alfasim_sdk._internal.alfacase.case_description import NodeDescription
 from alfasim_sdk._internal.alfacase.case_description import (
     NumericalOptionsDescription,
@@ -210,6 +212,7 @@ from alfasim_sdk._internal.constants import InterpolationType
 from alfasim_sdk._internal.constants import MassInflowSplitType
 from alfasim_sdk._internal.constants import MassSourceType
 from alfasim_sdk._internal.constants import MaterialType
+from alfasim_sdk._internal.constants import MultiInputType
 from alfasim_sdk._internal.constants import NodeCellType
 from alfasim_sdk._internal.constants import NonlinearSolverType
 from alfasim_sdk._internal.constants import OIL_FIELD
@@ -296,6 +299,7 @@ __all__ = [
     "CompositionDescription",
     "CompressorEquipmentDescription",
     "CompressorPressureTableDescription",
+    "CurveDescription",
     "CvTableDescription",
     "EnvironmentDescription",
     "EnvironmentPropertyDescription",
@@ -321,6 +325,7 @@ __all__ = [
     "MassSourceEquipmentDescription",
     "MassSourceNodePropertiesDescription",
     "MaterialDescription",
+    "MultiInputDescription",
     "NodeDescription",
     "NumericalOptionsDescription",
     "OpenHoleDescription",
@@ -394,6 +399,7 @@ __all__ = [
     "MassInflowSplitType",
     "MassSourceType",
     "MaterialType",
+    "MultiInputType",
     "NodeCellType",
     "NonlinearSolverType",
     "OIL_FIELD",
