@@ -10,7 +10,9 @@
             temperature: \ :class:`Scalar <barril.units.Scalar>`\  = Scalar(288.6, 'K', 'temperature')
             source_type: \ :class:`MassSourceType <alfasim_sdk._internal.constants.MassSourceType>`\  = MassSourceType.MassFlowRates
             volumetric_flow_rates_std: \ :class:`Dict <typing.Dict>`\[str, \ :class:`Scalar <barril.units.Scalar>`\] = {}
+            volumetric_flow_rates_std_curve: \ :class:`Dict <typing.Dict>`\[str, <class 'barril.curve.curve.Curve'>] = {}
             mass_flow_rates: \ :class:`Dict <typing.Dict>`\[str, \ :class:`Scalar <barril.units.Scalar>`\] = {}
+            mass_flow_rates_curve: \ :class:`Dict <typing.Dict>`\[str, <class 'barril.curve.curve.Curve'>] = {}
             total_mass_flow_rate: \ :class:`Scalar <barril.units.Scalar>`\  = Scalar(1.0, 'kg/s', 'mass flow rate')
             water_cut: \ :class:`Scalar <barril.units.Scalar>`\  = Scalar(0.0, '-', 'volume fraction')
             gas_oil_ratio: \ :class:`Scalar <barril.units.Scalar>`\  = Scalar(0.0, 'sm3/sm3', 'standard volume per standard volume')
@@ -31,10 +33,14 @@
                 string: 
                     value: number
                     unit: string # optional
+            volumetric_flow_rates_std_curve: 
+                string: Curve # optional
             mass_flow_rates: 
                 string: 
                     value: number
                     unit: string # optional
+            mass_flow_rates_curve: 
+                string: Curve # optional
             total_mass_flow_rate: 
                 value: number
                 unit: string # optional
