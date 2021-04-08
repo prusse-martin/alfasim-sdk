@@ -193,9 +193,10 @@ def load_curve(key: str, alfacase_content: DescriptionDocument, category) -> Cur
     Create a barril.curve.curve.Curve instance from the given YAML content.
     # TODO: ASIM-3556: All atributes from this module should get the category from the CaseDescription
     """
+    curve_in_alfacase = alfacase_content[key]
     return Curve(
-        load_array("image", alfacase_content, category),
-        load_array("domain", alfacase_content, "time"),
+        load_array("image", curve_in_alfacase, category),
+        load_array("domain", curve_in_alfacase, "time"),
     )
 
 
@@ -221,10 +222,10 @@ def load_dict_of_curves(
     Create a Dict of str to barril.curve.curve.Curve instances from the given YAML content.
     # TODO: ASIM-3556: All atributes from this module should get the category from the CaseDescription
     """
-    curve_in_alfacase = alfacase_content[key]
+    curve_dict_in_alfacase = alfacase_content[key]
     return {
-        k: load_curve(k, curve_in_alfacase[k], category)
-        for k in curve_in_alfacase.content.data.keys()
+        k: load_curve(k, curve_dict_in_alfacase, category)
+        for k in curve_dict_in_alfacase.content.data.keys()
     }
 
 
