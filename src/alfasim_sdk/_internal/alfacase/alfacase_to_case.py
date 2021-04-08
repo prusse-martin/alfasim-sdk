@@ -188,16 +188,14 @@ def get_dict_of_arrays_loader(
     )
 
 
-def load_curve(
-    key: str, alfacase_content: DescriptionDocument, category
-) -> Curve:
+def load_curve(key: str, alfacase_content: DescriptionDocument, category) -> Curve:
     """
     Create a barril.curve.curve.Curve instance from the given YAML content.
     # TODO: ASIM-3556: All atributes from this module should get the category from the CaseDescription
     """
     return Curve(
         load_array("image", alfacase_content, category),
-        load_array("domain", alfacase_content, 'time'),
+        load_array("domain", alfacase_content, "time"),
     )
 
 
@@ -922,7 +920,9 @@ def _load_mass_source_common() -> Dict[str, Callable]:
         "water_cut_input_type": get_enum_loader(enum_class=constants.MultiInputType),
         "water_cut": get_scalar_loader(category="volume fraction"),
         "water_cut_curve": get_curve_loader(category="volume fraction"),
-        "gas_oil_ratio_input_type": get_enum_loader(enum_class=constants.MultiInputType),
+        "gas_oil_ratio_input_type": get_enum_loader(
+            enum_class=constants.MultiInputType
+        ),
         "gas_oil_ratio": get_scalar_loader(from_unit="sm3/sm3"),
         "gas_oil_ratio_curve": get_curve_loader(from_unit="sm3/sm3"),
         "source_type": get_enum_loader(enum_class=constants.MassSourceType),
@@ -935,10 +935,14 @@ def _load_mass_source_common() -> Dict[str, Callable]:
         "volumetric_flow_rates_std_curve": get_dict_of_curves_loader(
             category="standard volume per time"
         ),
-        "mass_flow_rates_input_type": get_enum_loader(enum_class=constants.MultiInputType),
+        "mass_flow_rates_input_type": get_enum_loader(
+            enum_class=constants.MultiInputType
+        ),
         "mass_flow_rates": get_dict_with_scalar_loader(category="mass flow rate"),
         "mass_flow_rates_curve": get_dict_of_curves_loader(category="mass flow rate"),
-        "total_mass_flow_rate_input_type": get_enum_loader(enum_class=constants.MultiInputType),
+        "total_mass_flow_rate_input_type": get_enum_loader(
+            enum_class=constants.MultiInputType
+        ),
         "total_mass_flow_rate": get_scalar_loader(from_unit="kg/s"),
         "total_mass_flow_rate_curve": get_curve_loader(from_unit="kg/s"),
     }

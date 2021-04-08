@@ -149,7 +149,9 @@ class _MassSourceCommon:
 
     source_type = attrib_enum(default=constants.MassSourceType.MassFlowRates)
 
-    volumetric_flow_rates_std_input_type = attrib_enum(default=constants.MultiInputType.Constant)
+    volumetric_flow_rates_std_input_type = attrib_enum(
+        default=constants.MultiInputType.Constant
+    )
     volumetric_flow_rates_std: Dict[str, Scalar] = attr.ib(
         default=attr.Factory(dict), validator=dict_of(Scalar)
     )
@@ -165,7 +167,9 @@ class _MassSourceCommon:
         default=attr.Factory(dict), validator=dict_of(Curve)
     )
 
-    total_mass_flow_rate_input_type = attrib_enum(default=constants.MultiInputType.Constant)
+    total_mass_flow_rate_input_type = attrib_enum(
+        default=constants.MultiInputType.Constant
+    )
     total_mass_flow_rate = attrib_scalar(default=Scalar(1.0, "kg/s", "mass flow rate"))
     total_mass_flow_rate_curve = attrib_curve(
         default=Curve(Array([], "kg/s", "mass flow rate"), Array([], "s", "time"))
