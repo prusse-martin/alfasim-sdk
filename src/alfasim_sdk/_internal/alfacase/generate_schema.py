@@ -92,7 +92,7 @@ def dict_to_alfacase_schema(type_, indent):
     )
     body_indent = indent + 1
     value_schema = _get_attr_value(value_type, indent=body_indent)
-    if '\n' in value_schema:
+    if "\n" in value_schema:
         lines = [
             "MapPattern(",
             f"{INDENTANTION * body_indent}Str(),",
@@ -219,9 +219,7 @@ LIST_OF_IMPLEMENTATIONS = [
 ]
 
 
-def _get_attr_value(
-    type_: type, indent: int, key: str = "<Unknown>"
-) -> str:
+def _get_attr_value(type_: type, indent: int, key: str = "<Unknown>") -> str:
     """
     Indentation is a parameter used for Union and Dict.
     If the type parameter is a "Optional" type, only the args are used (without the NoneType)
@@ -232,9 +230,7 @@ def _get_attr_value(
 
     for predicate_function, handle_function in LIST_OF_IMPLEMENTATIONS:
         if predicate_function(type_):
-            return handle_function(
-                type_, indent=indent
-            )
+            return handle_function(type_, indent=indent)
 
     raise RuntimeError(
         f"Alfacase Schema does not know how to handle {type_}.\n"
@@ -279,9 +275,7 @@ IGNORED_PROPERTIES = (
 )
 
 
-def _get_attribute_schema(
-    key: str, value: attr.ib, indent: int = 2
-) -> str:
+def _get_attribute_schema(key: str, value: attr.ib, indent: int = 2) -> str:
     """
     Helper method that return the equivalent schema for the given key and value.
 
@@ -295,9 +289,7 @@ def _get_attribute_schema(
         )
         raise TypeError(msg)
     attribute_name = _get_attr_name(key, value)
-    attribute_value = _get_attr_value(
-        value.type, indent=indent, key=key
-    )
+    attribute_value = _get_attr_value(value.type, indent=indent, key=key)
 
     return f"{INDENTANTION * indent}{attribute_name}: {attribute_value}" + ","
 

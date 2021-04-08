@@ -17,8 +17,8 @@ from barril.curve.curve import Curve
 from barril.units import Array
 from barril.units import Scalar
 
-from .case_description_attributes import attrib_dict_of
 from .case_description_attributes import attrib_curve
+from .case_description_attributes import attrib_dict_of
 from .case_description_attributes import attrib_enum
 from .case_description_attributes import attrib_instance
 from .case_description_attributes import attrib_instance_list
@@ -174,7 +174,8 @@ class _MassSourceCommon:
     gas_oil_ratio_curve = attrib_curve(
         default=Curve(
             Array("standard volume per standard volume", [], "sm3/sm3"),
-            Array("time", [], "s")),
+            Array("time", [], "s"),
+        ),
     )
 
 

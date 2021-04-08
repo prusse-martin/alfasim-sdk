@@ -45,7 +45,7 @@ def prepare_error_message(message: str, error_context: Optional[str] = None) -> 
     If `error_context` is not None prepend that to error message.
     """
     if error_context is not None:
-        return error_context + ': ' + message
+        return error_context + ": " + message
     else:
         return message
 
@@ -148,10 +148,10 @@ def to_curve(
         return value
     if is_two_element_tuple(value):
         image = to_array(
-            value[0], error_context=prepare_error_message('Curve image', error_context)
+            value[0], error_context=prepare_error_message("Curve image", error_context)
         )
         domain = to_array(
-            value[1], error_context=prepare_error_message('Curve domain', error_context)
+            value[1], error_context=prepare_error_message("Curve domain", error_context)
         )
         return Curve(image, domain)
     elif isinstance(value, Curve):
@@ -165,7 +165,8 @@ def to_curve(
 
 
 def attrib_scalar(
-    default: Union[ScalarLike, AttrNothingType] = attr.NOTHING, is_optional: bool = False
+    default: Union[ScalarLike, AttrNothingType] = attr.NOTHING,
+    is_optional: bool = False,
 ) -> attr._make._CountingAttr:
     """
     Create a new attr attribute with a converter to Scalar accepting also tuple(value, unit).
