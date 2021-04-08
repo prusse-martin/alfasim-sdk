@@ -209,7 +209,9 @@ def _get_array_reference() -> str:
 
 def _get_curve_reference() -> str:
     """ Return a string with a cross-reference to Curve documentation. """
-    return _get_class_with_reference(visible_name="Curve", ref="barril.curve.curve.Curve")
+    return _get_class_with_reference(
+        visible_name="Curve", ref="barril.curve.curve.Curve"
+    )
 
 
 def _get_list_reference() -> str:
@@ -399,7 +401,9 @@ def curve_formatted_for_schema(value: Type[Curve], *, number_of_indent=1) -> str
         useful for when used with other schema such as Dict.
     """
     block_indentation = BASE_INDENT + INDENT * number_of_indent
-    array_schema = array_formatted_for_schema(Array, number_of_indent=number_of_indent + 1)
+    array_schema = array_formatted_for_schema(
+        Array, number_of_indent=number_of_indent + 1
+    )
     return f"\n{block_indentation}image:{array_schema}\n{block_indentation}domain:{array_schema}"
 
 
